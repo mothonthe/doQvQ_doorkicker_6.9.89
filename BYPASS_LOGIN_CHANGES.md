@@ -32,3 +32,7 @@ These changes do not alter Home product behavior; they only make the frozen 6.9.
 ## Boot-gate stabilization (2026-10-01)
 
 The mirror now also clears stale boot/recovery flags inherited from other `mothonthe.github.io` Nuojiji test deployments, seeds the upstream adult-confirmation flag, and releases the decorative boot overlay once the React tree exists. This prevents old restore/watchdog state from leaving the reference mirror parked forever on the pixel splash.
+
+## Boot-overlay fix (2026-10-01)
+
+The vendor pixel/lock-screen boot scene is decorative and normally removed by the authenticated app-ready lifecycle. In the static archaeology mirror that lifecycle can remain incomplete even after React/NoOS has rendered underneath, leaving the mirror apparently stuck on `今天也要和他聊聊天吗？`. The mirror now clears stale restore/recovery flags, pre-confirms the age gate for reference browsing, and removes the boot overlay after the real React/NoOS tree mounts.
