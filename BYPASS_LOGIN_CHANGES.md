@@ -40,3 +40,9 @@ The vendor pixel/lock-screen boot scene is decorative and normally removed by th
 ## Vite lazy-dependency base patch
 
 Vite's generated dependency maps contain quoted `assets/...` entries. In the vendor build those are resolved against the configured site root and therefore still escaped a GitHub Pages project subpath even after direct `/assets/...` strings were repaired. The reference mirror rewrites these generated static dependency-map literals to `/doQvQ_doorkicker_6.9.89/assets/...`. A case-compatibility alias is also retained for `badgeService-DXgm43Dv.js` because an earlier Chromium recovery trace requested that casing while the OTA filename is `badgeService-DXGm43Dv.js`.
+
+## Vite lazy-dependency base patch
+
+Vite's generated dependency maps contain quoted `assets/...` entries. In the vendor root deployment those are resolved from `/`; on GitHub Pages that escaped the project path and produced chunk requests under `https://mothonthe.github.io/assets/...`. The reference mirror rewrites those generated static dependency-map literals to `/doQvQ_doorkicker_6.9.89/assets/...`.
+
+A case-compatibility alias `assets/badgeService-DXgm43Dv.js` is also retained because one Chromium recovery trace requested that spelling while the OTA filename is `badgeService-DXGm43Dv.js`. This alias is mirror-only.
