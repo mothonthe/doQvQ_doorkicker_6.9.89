@@ -46,3 +46,7 @@ Vite's generated dependency maps contain quoted `assets/...` entries. In the ven
 Vite's generated dependency maps contain quoted `assets/...` entries. In the vendor root deployment those are resolved from `/`; on GitHub Pages that escaped the project path and produced chunk requests under `https://mothonthe.github.io/assets/...`. The reference mirror rewrites those generated static dependency-map literals to `/doQvQ_doorkicker_6.9.89/assets/...`.
 
 A case-compatibility alias `assets/badgeService-DXgm43Dv.js` is also retained because one Chromium recovery trace requested that spelling while the OTA filename is `badgeService-DXGm43Dv.js`. This alias is mirror-only.
+
+## Root-scope stale Service Worker fix (2026-10-01)
+
+A previously installed `mothonthe.github.io` root-scope Service Worker could still control the repository page and rewrite/fetch old root `/assets/...` URLs before the mirror's late cleanup script ran. The entry module is now loaded dynamically only after unregistering all Service Workers and clearing Cache Storage. If the page was already controlled, the mirror performs one controlled reload after unregistering, then imports the 6.9.89 entry from the repository-prefixed path. Modulepreload links were removed so stale controllers cannot prefetch old chunks first.
