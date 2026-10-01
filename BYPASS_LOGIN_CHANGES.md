@@ -36,3 +36,7 @@ The mirror now also clears stale boot/recovery flags inherited from other `motho
 ## Boot-overlay fix (2026-10-01)
 
 The vendor pixel/lock-screen boot scene is decorative and normally removed by the authenticated app-ready lifecycle. In the static archaeology mirror that lifecycle can remain incomplete even after React/NoOS has rendered underneath, leaving the mirror apparently stuck on `今天也要和他聊聊天吗？`. The mirror now clears stale restore/recovery flags, pre-confirms the age gate for reference browsing, and removes the boot overlay after the real React/NoOS tree mounts.
+
+## Vite lazy-dependency base patch
+
+Vite's generated dependency maps contain quoted `assets/...` entries. In the vendor build those are resolved against the configured site root and therefore still escaped a GitHub Pages project subpath even after direct `/assets/...` strings were repaired. The reference mirror rewrites these generated static dependency-map literals to `/doQvQ_doorkicker_6.9.89/assets/...`. A case-compatibility alias is also retained for `badgeService-DXgm43Dv.js` because an earlier Chromium recovery trace requested that casing while the OTA filename is `badgeService-DXGm43Dv.js`.
