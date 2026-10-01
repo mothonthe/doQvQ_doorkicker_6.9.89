@@ -28,3 +28,7 @@ For this static reference mirror only:
 - the vendor 15-second stuck-diagnostic overlay is suppressed in reference-mirror mode.
 
 These changes do not alter Home product behavior; they only make the frozen 6.9.89 reference bundle stable under a GitHub Pages project subpath.
+
+## Boot-gate stabilization (2026-10-01)
+
+The mirror now also clears stale boot/recovery flags inherited from other `mothonthe.github.io` Nuojiji test deployments, seeds the upstream adult-confirmation flag, and releases the decorative boot overlay once the React tree exists. This prevents old restore/watchdog state from leaving the reference mirror parked forever on the pixel splash.

@@ -1141,12 +1141,27 @@
       if ('caches' in window) caches.keys().then(function(keys){ return Promise.all(keys.map(function(k){ return caches.delete(k); })); }).catch(function(){});
     } catch (_) {}
   </script>
-<!-- Reference mirror bootstrap: visual archaeology only; vendor auth/locks are bypassed. -->
+<script>
+    window.setTimeout(function(){
+      try {
+        var root=document.getElementById('root');
+        var os=document.getElementById('nuo-os-root');
+        if ((root && root.children.length) || (os && os.children.length)) {
+          window.__nuojijiAppReady=true;
+          if (typeof window.__nuojijiForceRemoveLoadingOverlay==='function') window.__nuojijiForceRemoveLoadingOverlay('app-ready');
+          else { var ov=document.getElementById('app-loading-overlay'); if (ov) ov.remove(); document.body.classList.remove('app-loading'); }
+        }
+      } catch (_) {}
+    }, 1800);
+  </script>
+  <!-- Reference mirror bootstrap: visual archaeology only; vendor auth/locks are bypassed. -->
   <script>
     try {
       localStorage.setItem('lockScreenEnabled','false');
       localStorage.setItem('lockPasswordEnabled','false');
       localStorage.setItem('nuojiji_tavern_unlocked','true');
+      localStorage.setItem('nuo_age_confirmed_18_v1','1');
+      ['nuojiji_ota_pending','nuojiji_post_restore_loading','nuojiji_boot_attempts','nuojiji_boot_errors','nuojiji-last-resort-used','nuojiji_recent_crash'].forEach(function(k){ localStorage.removeItem(k); });
       sessionStorage.setItem('unlocked','true');
     } catch (_) {}
   </script>
