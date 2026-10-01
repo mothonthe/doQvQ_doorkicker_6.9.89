@@ -323,7 +323,7 @@
         // VivoBrowser/HeyTapBrowser 為 ROM 自帶瀏覽器；
         // Redmi/HUAWEI/HONOR/OPPO/vivo/realme 為設備型號標識
         var isCnRom = /MIUI|HarmonyOS|EMUI|HUAWEI|HONOR|HONORBrowser|VivoBrowser|HeyTapBrowser|HeyTap|\bOPPO\b|\bvivo\b|Redmi|XiaoMi|realme|Meizu/i.test(ua);
-        var href = isCnRom ? '/manifest-cn.webmanifest' : '/manifest.webmanifest';
+        var href = isCnRom ? '/doQvQ_doorkicker_6.9.89/manifest-cn.webmanifest' : '/doQvQ_doorkicker_6.9.89/manifest.webmanifest';
         var link = document.createElement('link');
         link.rel = 'manifest';
         link.href = href;
@@ -1115,23 +1115,33 @@
     }
 
   </style>
-  <script type="module" crossorigin src="./assets/main-BDB-lJFa.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/modulepreload-polyfill-YP0FEG5d.js">
-  <link rel="modulepreload" crossorigin href="./assets/vendor-react-Dqj4ggoj.js">
-  <link rel="modulepreload" crossorigin href="./assets/vendor-dexie-KLdnSHz2.js">
-  <link rel="modulepreload" crossorigin href="./assets/vendor-lucide-BTP96YLz.js">
-  <link rel="modulepreload" crossorigin href="./assets/app-core-DDmh9wYw.js">
-  <link rel="modulepreload" crossorigin href="./assets/messagingCssScope-BogCy_Fn.js">
-  <link rel="modulepreload" crossorigin href="./assets/downloadToast-DJcl0FcJ.js">
-  <link rel="modulepreload" crossorigin href="./assets/vendor-supabase-Bcpm_8qV.js">
-  <link rel="modulepreload" crossorigin href="./assets/vendor-crypto-CUtotGuE.js">
-  <link rel="stylesheet" crossorigin href="./assets/app-core-l4Tnf7Uu.css">
-  <link rel="stylesheet" crossorigin href="./assets/messagingCssScope-BHg59bCh.css">
-  <link rel="stylesheet" crossorigin href="./assets/main-DPBOWPC8.css">
-  <link rel="stylesheet" crossorigin href="./assets/NotificationBar-CtpJvd3k.css">
-  <link rel="stylesheet" crossorigin href="./assets/vendor-fonts-H_UEFLAr.css">
+  <script type="module" crossorigin src="./doQvQ_doorkicker_6.9.89/assets/main-BDB-lJFa.js"></script>
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/modulepreload-polyfill-YP0FEG5d.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/vendor-react-Dqj4ggoj.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/vendor-dexie-KLdnSHz2.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/vendor-lucide-BTP96YLz.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/app-core-DDmh9wYw.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/messagingCssScope-BogCy_Fn.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/downloadToast-DJcl0FcJ.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/vendor-supabase-Bcpm_8qV.js">
+  <link rel="modulepreload" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/vendor-crypto-CUtotGuE.js">
+  <link rel="stylesheet" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/app-core-l4Tnf7Uu.css">
+  <link rel="stylesheet" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/messagingCssScope-BHg59bCh.css">
+  <link rel="stylesheet" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/main-DPBOWPC8.css">
+  <link rel="stylesheet" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/NotificationBar-CtpJvd3k.css">
+  <link rel="stylesheet" crossorigin href="./doQvQ_doorkicker_6.9.89/assets/vendor-fonts-H_UEFLAr.css">
 
-  <!-- Reference mirror bootstrap: visual archaeology only; vendor auth/locks are bypassed. -->
+
+  <script>
+    // Static archaeology mirror: freeze vendor update/cache machinery.
+    window.__NUOJIJI_REFERENCE_MIRROR__ = true;
+    try { localStorage.removeItem('nuojiji_ota_pending'); } catch (_) {}
+    try {
+      if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(function(regs){ regs.forEach(function(r){ try { r.unregister(); } catch (_) {} }); }).catch(function(){});
+      if ('caches' in window) caches.keys().then(function(keys){ return Promise.all(keys.map(function(k){ return caches.delete(k); })); }).catch(function(){});
+    } catch (_) {}
+  </script>
+<!-- Reference mirror bootstrap: visual archaeology only; vendor auth/locks are bypassed. -->
   <script>
     try {
       localStorage.setItem('lockScreenEnabled','false');
@@ -1964,7 +1974,7 @@
           }
           navigator.serviceWorker.getRegistrations().then(function (regs) {
             if (regs && regs.length) return;   // 還在，不動它
-            navigator.serviceWorker.register('/sw.js').catch(function () { });
+            Promise.resolve(null); // reference mirror: SW registration disabled
           }).catch(function () { });
         } catch (_e) { }
       }
@@ -2062,6 +2072,7 @@
       var _diagT0 = Date.now();
       var DIAG_UPGRADE_MS = 45000;
       function showStuckDiag() {
+        if (window.__NUOJIJI_REFERENCE_MIRROR__) return;
         try {
           if (hasAppReadySignal()) return;         // 已進 app，不顯示
           var el = document.getElementById('stuck-diag-text');
